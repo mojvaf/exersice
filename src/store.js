@@ -13,7 +13,7 @@ export const exercises =
         },
         {
             id: 'dips',
-            title: 'Dips',
+            title: 'hips',
             description: 'Triceps exercise...',
             muscles: 'arms'
         },
