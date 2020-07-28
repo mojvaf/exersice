@@ -1,25 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
+import Main from './components/layout/Main';
+
+import { muscles, exercises } from './store'
+
+
 
 function App() {
+
+  const [category, setCategory] = useState('')
+
+  const GetExercisesByMuscles = () => {
+    return Object.entries(exercises.reduce((exercises, exercise) => {
+      const { muscles } = exercise
+
+      exercises[muscles] = exercises[muscles] ? [...exercises[muscles], exercise] : [exercise]
+      return exercises
+    }, {}))
+  }
+
+  const exercise = (GetExercisesByMuscles())
+
+
+  const handelCategorySelected = (category) => {
+    setCategory(category, exercise)
+
+  }
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    < div className="App" >
+
+      <Header />
+      <Main
+
+        exercise={exercise}
+        category={category}
+      />
+
+      <Footer
+
+        category={category}
+        muscles={muscles}
+        onSelect={handelCategorySelected} />
+
+    </div >
   );
 }
 
