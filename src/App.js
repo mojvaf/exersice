@@ -11,6 +11,7 @@ import { muscles, exercises } from './store'
 function App() {
 
   const [category, setCategory] = useState('')
+  const [exerciseSelect, setExerciseSelect] = useState(exercises)
 
   const GetExercisesByMuscles = () => {
     return Object.entries(exercises.reduce((exercises, exercise) => {
@@ -29,7 +30,9 @@ function App() {
 
   }
 
-
+  const handelExercisesSelected = (id) => {
+    setExerciseSelect(exercises.find(ex => ex.id === id))
+  }
 
 
   return (
@@ -38,9 +41,10 @@ function App() {
 
       <Header />
       <Main
-
+        exerciseSelect={exerciseSelect}
         exercise={exercise}
         category={category}
+        onSelect={handelExercisesSelected}
       />
 
       <Footer

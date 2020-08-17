@@ -7,7 +7,14 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
-const Main = ({ exercise, category, onSelect }) => {
+const Main = ({ exercise,
+    category,
+    onSelect,
+    exerciseSelect:
+    { id,
+        title = 'welcome!',
+        description = 'Please select an exercise from the list'
+    } }) => {
 
     return (
         <Grid container spacing={2}>
@@ -20,7 +27,9 @@ const Main = ({ exercise, category, onSelect }) => {
                             <List component="ul" >
                                 {exercise.map(({ id, title }) =>
                                     <ListItem button>
-                                        <ListItemText primary={title} onClick={() => onSelect(id)} />
+                                        <ListItemText
+                                            primary={title}
+                                            onClick={() => onSelect(id)} />
 
                                     </ListItem>
                                 )}
@@ -33,11 +42,12 @@ const Main = ({ exercise, category, onSelect }) => {
             </Grid>
             <Grid item sm >
                 <Paper style={style.Paper}>
+
                     <Typography variant="h4">
-                        welcome!
+                        {title}
                     </Typography>
                     <Typography variant="body2">
-                        Please select an exercise from the list
+                        {description}
                     </Typography>
                 </Paper>
             </Grid>
