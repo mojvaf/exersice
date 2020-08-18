@@ -4,8 +4,12 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
+import IconButton from '@material-ui/core/IconButton';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import CommentIcon from '@material-ui/icons/Comment';
+
 
 const Main = ({ exercise,
     category,
@@ -14,7 +18,7 @@ const Main = ({ exercise,
     { id,
         title = 'welcome!',
         description = 'Please select an exercise from the list'
-    } }) => {
+    }, onDelete }) => {
 
     return (
         <Grid container spacing={2}>
@@ -30,7 +34,12 @@ const Main = ({ exercise,
                                         <ListItemText
                                             primary={title}
                                             onClick={() => onSelect(id)} />
-
+                                        <ListItemText />
+                                        <ListItemSecondaryAction>
+                                            <IconButton edge="end" aria-label="comments">
+                                                <DeleteOutlineIcon onClick={() => onDelete()} />
+                                            </IconButton>
+                                        </ListItemSecondaryAction>
                                     </ListItem>
                                 )}
                             </List>

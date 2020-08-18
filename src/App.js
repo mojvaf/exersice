@@ -30,21 +30,35 @@ function App() {
 
   }
 
+  const onExerciseCreate = () => {
+    setCategory(({ category }) => ({ ...category, category }))
+
+  }
+
+
   const handelExercisesSelected = (id) => {
     setExerciseSelect(exercises.find(ex => ex.id === id))
   }
 
 
+  const handelExercisesDelete = (id) => {
+    setExerciseSelect(exercises.filter(ex => ex.id !== id))
+  }
+
   return (
 
     < div className="App" >
 
-      <Header />
+      <Header
+        muscles={muscles}
+        onExerciseCreate={onExerciseCreate}
+      />
       <Main
         exerciseSelect={exerciseSelect}
         exercise={exercise}
         category={category}
         onSelect={handelExercisesSelected}
+        onDelete={handelExercisesDelete}
       />
 
       <Footer

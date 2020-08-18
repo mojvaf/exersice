@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-
+import Create from '../exercises/dialogs/Create'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -13,24 +13,30 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(2),
     },
     title: {
-        flexGrow: 1,
+        flexGrow: -1,
     },
 }));
 
 
-const Header = () => {
+
+const Header = ({muscles, onExerciseCreate}) => {
     const classes = useStyles();
 
     return (
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
-                    <Typography variant="h6" className={classes.title} >
-                        news
+                    <Typography variant="h6" style={{ flex: 1 }} >
+                        News
                       
                     </Typography>
+                    <Create
+                     muscles={muscles}
+                     onCreate={onExerciseCreate}    
+                     />
 
                 </Toolbar>
+               
             </AppBar>
         </div>
     )
